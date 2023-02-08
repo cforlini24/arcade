@@ -1,0 +1,129 @@
+*{
+    font-family: 'Jost', sans-serif;
+    background-color: black;
+    color: white;
+}
+
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#gameContainer{
+    font-family: 'Jost', sans-serif;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    font-size: 10em;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    align-self: center;
+    justify-self: center;
+}
+
+main{
+    position: static;
+    width: 100%;
+    height: 100%;
+}
+
+span{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+.row{
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+    width: 600px;
+    height: 200px;
+}
+.column{
+    width: 100%
+}
+
+#row0{
+
+    border-bottom: solid;
+}
+
+#row1{
+
+    border-bottom: solid;
+}
+
+
+
+.column0{
+    border-right: solid;
+    
+}
+
+
+.column2{
+    border-left: solid;
+  
+}
+
+
+#overlay{
+    
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(124, 100, 100, 0.5);
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    font-size: 15em;
+    z-index: 2;
+    color: indianred;
+}
+
+ #overlayText{
+    background-color:rgba(124, 100, 100, 0.5);
+    text-align: center;
+    color: indianred;
+}
+
+#newGameButton{
+    border: solid;
+     padding: 5%;
+     margin-left: 10%;
+     margin-right: 10%;
+}
+
+#buttons{
+    display: flex;
+    padding: 5%;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#currentPlayer{
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#stats{
+    display: flex;
+}
+
+#winCounter{
+    margin-right: 10%;
+}
+
+table, th, td {
+    border: 1px solid;
+  }

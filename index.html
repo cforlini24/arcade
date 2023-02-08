@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chase's Arcade</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" defer src="app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="overlay">
+        <div id="overlayText"></div>
+    </div>
+        <h1 id="mainHeader" >Welcome to Chase's Arcade!</h1>
+    <main>
+        <div id = "gameContainer">
+        </div>
+    </main>
+    <div id = "buttons">
+        <div id="stats">
+            <table id="winCounter">
+                <tr>
+                    <th>X's wins</th>
+                    <th>O's wins</th>
+                </tr>
+                <tr>
+                    <th id="xWinCounter">0</th>
+                    <th id="oWinCounter">0</th>
+                </tr>
+
+            </table>
+            <div id="currentPlayer">Current Player: <span id = "currentPlayerText">X</span></div>
+        </div>
+        <button id="newGameButton">New Game</button>
+        <select id="playerSelection">
+            <option value = "twoPlayer">Two Player</option>
+            <option value = "onePlayer">Single Player</option>
+        </select>
+
+    </div>
+</body>
+</html>
