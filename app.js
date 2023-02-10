@@ -130,7 +130,7 @@ function fillSquare(row, column){
             }
             for(let i = 0; i < board.length; i++){                          //block rows
                     if(board[i][0] == board[i][1] || board[i][1] == board[i][2] || board[i][0] == board[i][2] ){ //if 2 matches in row
-                        let nullCounter = 0;
+                        let nullCounter = 0;        //very proud of this idea
                         for (let n = 0; n < board[i].length; n++){
                             if(board[i][n] == null){
                                 nullCounter++;
@@ -152,7 +152,7 @@ function fillSquare(row, column){
             if(!rowMatchFound){                                             //block columns
                 for(let i = 0; i < board[0].length; i++){                  
                     if(board[0][i] == board[1][i] || board[0][i] == board[2][i] || board[1][i] == board[2][i]){ //if two matchs in columns
-                        let nullCounter = 0;
+                        let nullCounter = 0;       
                         for( let n = 0;n < board.length; ++n){
                             if(board[n][i] == null){
                                 nullCounter++
@@ -236,8 +236,6 @@ function fillSquare(row, column){
                     computerPlayed = true;
                 }
             }
-            
-            
         } 
         checkWin();
     }
