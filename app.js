@@ -1,11 +1,7 @@
 /*TODO:
 take in player names
 MAYBE: expand grid
-MAYBE: increase computer difficulty
 MAYBE: implement wonGame funciton for better usability
-
-
-git test
 */
 
 const board = [
@@ -98,7 +94,7 @@ function fillSquare(row, column){
         currentPlayerElt.textContent = currentPlayer;
         checkWin();
     }
-    else if(board[row][column] == null && gameActive && playerSelection == "onePlayer"){ //singleplayer
+    else if(board[row][column] == null && gameActive && playerSelection == "onePlayer"){ //singleplayer simple
         square.textContent = currentPlayer
         let rowArray = board[row]
         rowArray[column] = currentPlayer;
@@ -116,7 +112,137 @@ function fillSquare(row, column){
         checkWin();
         
     }
+    else if(board[row][column] == null && gameActive && playerSelection == "onePlayerAdv"){  //singleplayer advanced 
+        square.textContent = currentPlayer
+        let rowArray = board[row]
+        rowArray[column] = currentPlayer;
+        checkWin();
+        let computerPlayed = false;
+        let rowMatchFound = false;
+        let columnMatchFound = false;
+        let diagMatchFound = false;
+        while(computerPlayed == false  && gameActive){  
+            if(board[1][1] == null){                                        // fill in center by default
+                board[1][1] = "O";
+                document.getElementsByClassName("row1")[1].textContent = "O"
+                computerPlayed = true;
+                break;
+            }
+            for(let i = 0; i < board.length; i++){                          //block rows
+                    if(board[i][0] == board[i][1] || board[i][1] == board[i][2] || board[i][0] == board[i][2] ){ //if 2 matches in row
+                        let nullCounter = 0;
+                        for (let n = 0; n < board[i].length; n++){
+                            if(board[i][n] == null){
+                                nullCounter++;
+                            }
+                        }
+                        let index = board[i].indexOf(null);
+                        if(nullCounter > 1 || index == -1){
+                            continue;
+                        }
+                        board[i][index] = "O"
+                        document.getElementsByClassName("row" + i)[index].textContent = "O";
+                        computerPlayed = true;
+                        rowMatchFound = true;
+                        break;    
+                    }else{
+                        continue;
+                    }   
+            }
+            if(!rowMatchFound){                                             //block columns
+                for(let i = 0; i < board[0].length; i++){                  
+                    if(board[0][i] == board[1][i] || board[0][i] == board[2][i] || board[1][i] == board[2][i]){ //if two matchs in columns
+                        let nullCounter = 0;
+                        for( let n = 0;n < board.length; ++n){
+                            if(board[n][i] == null){
+                                nullCounter++
+                            }
+                        }
+                        let index = undefined;
+                        if(nullCounter < 2){
+                            for( let n = 0;n < board.length; ++n){      //find empty square
+                                if(board[n][i] == null){
+                                    index = n;
+                                    break;
+                                }else{
+                                    continue;
+                                }
+                            }
+                        }else{
+                            continue;
+                        }
+                        if(index >= 0){             //checks for empty space
+                            board[index][i] = "O"
+                            document.getElementsByClassName("row" + index)[i].textContent = "O";
+                            computerPlayed = true;
+                            columnMatchFound = true;
+                            break;
+                        }
+                        else{
+                            continue;
+                        }
+                    }
+                    else{
+                        continue;
+                    }
+                }
+            }
+            if(!rowMatchFound && !columnMatchFound){                        //block diagonals
+                let tToB = [board[0][0], board[1][1], board[2][2]]
+                let index = undefined;
+                if(board[0][0] == board[1][1] || board[1][1] == board[2][2] || board[0][0] == board[2][2]){   //top to bottom
+                    let nullCounter = 0;
+                    for (let i = 0; i < tToB.length; i++){
+                        if(tToB[i] == null){
+                            nullCounter++
+                        }else{
+                            continue;
+                        }
+                    }
+                    index = tToB.indexOf(null);
+                    if(nullCounter < 2 && index != -1){         //checks for empty space
+                        board[index][index] = "O";
+                        computerPlayed = true;
+                        diagMatchFound = true;
+                        document.getElementsByClassName("row" + index)[index].textContent = "O";
+                    }
+                }
+                let bToT = [board[0][2], board[1][1], board[2][0]]
+                if(board[0][2] == board[1][1] || board[0][2] == board[2][0] || board[1][1] == board[2][0]){       //bottom to top
+                    let nullCounter = 0;
+                    for (let i = 0; i < bToT.length; i++){
+                        if(bToT[i] == null){
+                            nullCounter++
+                        }else{
+                            continue;
+                        }
+                    }
+                    index = bToT.indexOf(null);
+                    if(nullCounter < 2 && index != -1){         //checks for empty space
+                        board[index][2 - index] = "O";
+                        diagMatchFound = true;
+                        computerPlayed = true;
+                        document.getElementsByClassName("row" + index)[2 - index].textContent = "O";
+                    }
+                   
+                } 
+            }
+            if(!rowMatchFound && !columnMatchFound && !diagMatchFound){     //play random if no matches found
+                let randomRow = getRandomInt(3);
+                let randomColumn = getRandomInt(3);
+                if(board[randomRow][randomColumn] == null){
+                    board[randomRow][randomColumn] = "O"
+                    document.getElementsByClassName("row" + randomRow)[randomColumn].textContent = "O"
+                    computerPlayed = true;
+                }
+            }
+            
+            
+        } 
+        checkWin();
+    }
 }
+
 
 function checkWin(){
     let noWinner = true;
