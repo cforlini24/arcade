@@ -127,3 +127,7 @@ span{
 table, th, td {
     border: 1px solid;
   }
+  select{
+    height: fit-content;
+    align-self: center;
+  }
